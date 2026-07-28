@@ -2,6 +2,7 @@
 using first_dotnet_app.DTOs.Respose;
 using first_dotnet_app.Interfaces;
 using first_dotnet_app.Models;
+using first_dotnet_app.Mappings;
 
 namespace first_dotnet_app.Services
 {
@@ -14,21 +15,11 @@ namespace first_dotnet_app.Services
             _repository = repository;
         }
 
-        private static ProductResponse MapToResponse(Product prduct)
-        {
-            return new ProductResponse()
-            {
-                Id = prduct.Id,
-                Name = prduct.Name,
-                Description = prduct.Description,
-                Price = prduct.Price,
-            };
-        }
 
         public IEnumerable<ProductResponse> GetAll()
         {
             //return _repository.GetAll().Select(p => MapToResponse(p));
-            return _repository.GetAll().Select(MapToResponse);
+            return _repository.GetAll().Select(p => p.ToResponse());
         }
 
         public ProductResponse? GetById(int id)
@@ -36,7 +27,7 @@ namespace first_dotnet_app.Services
             var product = _repository.GetById(id);
 
             if (product == null) return null;
-            return MapToResponse(product);
+            return product.ToResponse();
         }
         public ProductResponse Create(CreateProductRequest request)
         {
@@ -54,7 +45,7 @@ namespace first_dotnet_app.Services
 
             _repository.Create(product);
 
-            return MapToResponse(product);
+            return product.ToResponse();
         }
         public bool Update(int id, UpdateProductRequest request)
         {

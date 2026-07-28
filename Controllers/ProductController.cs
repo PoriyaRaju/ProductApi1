@@ -13,9 +13,9 @@ namespace first_dotnet_app.Controllers
     {
         private readonly IProductService _service;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService service)
         {
-            _service = productService;
+            _service = service;
         }
 
         [HttpGet]
@@ -38,14 +38,15 @@ namespace first_dotnet_app.Controllers
         public ActionResult<ProductResponse> Create(CreateProductRequest request)
         {
             var product = _service.Create(request);
-            return CreatedAtAction(nameof(GetById), new { id = 10 }, product);
+            Console.WriteLine($"nameof(GetById) => {nameof(GetById)}");
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
 
         [HttpPatch("{id}")]
         public ActionResult<bool> Update(int id, UpdateProductRequest request)
         {
             Console.WriteLine($"{id} \t ${request.ToString()}");
-            bool flag =  _service.Update(id, request);
+            bool flag = _service.Update(id, request);
             Console.WriteLine(flag);
             return flag;
         }
