@@ -7,12 +7,12 @@ namespace first_dotnet_app.Interfaces
     {
         IEnumerable<ProductResponse> GetAll();
 
-        ProductResponse? GetById(int id);
+        ProductResponse? GetById(Guid id);
 
         ProductResponse Create(CreateProductRequest request);
 
-        bool Update(int id , UpdateProductRequest request);
+        bool Update(Guid id , UpdateProductRequest request);
 
-        bool Delete(int id);
+        bool Delete(Guid id);
     }
 }

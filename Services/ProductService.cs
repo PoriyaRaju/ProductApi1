@@ -22,7 +22,7 @@ namespace first_dotnet_app.Services
             return _repository.GetAll().Select(p => p.ToResponse());
         }
 
-        public ProductResponse? GetById(int id)
+        public ProductResponse? GetById(Guid id)
         {
             var product = _repository.GetById(id);
 
@@ -33,11 +33,8 @@ namespace first_dotnet_app.Services
         {
             var _products = _repository.GetAll();
 
-            var nextId = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
-
             var product = new Product
             {
-                Id = nextId,
                 Name = request.Name,
                 Description = request.Description,
                 Price = request.Price,
@@ -47,7 +44,7 @@ namespace first_dotnet_app.Services
 
             return product.ToResponse();
         }
-        public bool Update(int id, UpdateProductRequest request)
+        public bool Update(Guid id, UpdateProductRequest request)
         {
             var existing = _repository.GetById(id);
 
@@ -63,7 +60,7 @@ namespace first_dotnet_app.Services
             return _repository.Update(product);
         }
 
-        public bool Delete(int id)
+        public bool Delete(Guid id)
         {
             return _repository.Delete(id);
         }

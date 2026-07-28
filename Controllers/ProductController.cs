@@ -26,7 +26,7 @@ namespace first_dotnet_app.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ProductResponse> GetById(int id)
+        public ActionResult<ProductResponse> GetById(Guid id)
         {
             var product = _service.GetById(id);
 
@@ -43,7 +43,7 @@ namespace first_dotnet_app.Controllers
         }
 
         [HttpPatch("{id}")]
-        public ActionResult<bool> Update(int id, UpdateProductRequest request)
+        public ActionResult<bool> Update(Guid id, UpdateProductRequest request)
         {
             Console.WriteLine($"{id} \t ${request.ToString()}");
             bool flag = _service.Update(id, request);
@@ -53,7 +53,7 @@ namespace first_dotnet_app.Controllers
 
 
         [HttpDelete("{id}")]
-        public ActionResult<bool> Delete(int id)
+        public ActionResult<bool> Delete(Guid id)
         {
             return _service.Delete(id);
         }

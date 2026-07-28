@@ -6,12 +6,12 @@ namespace first_dotnet_app.Interfaces
     {
         IEnumerable<Product> GetAll();
 
-        Product? GetById(int id);
+        Product? GetById(Guid id);
 
         Product Create(Product product);
 
         bool Update(Product product);
 
-        bool Delete(int id);
+        bool Delete(Guid id);
     }
 }

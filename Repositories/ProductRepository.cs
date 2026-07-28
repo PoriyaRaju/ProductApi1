@@ -10,7 +10,6 @@ namespace first_dotnet_app.Repositories
         {
             new Product
             {
-                Id=1,
                 Name="Laptop",
                 Description="Dell i3 11th Gen",
                 Price = 20000
@@ -22,7 +21,7 @@ namespace first_dotnet_app.Repositories
             return _products;
         }
 
-        public Product? GetById(int id)
+        public Product? GetById(Guid id)
         {
             return _products.FirstOrDefault(p => p.Id == id);
         }
@@ -51,7 +50,7 @@ namespace first_dotnet_app.Repositories
             return true;
         }
 
-        public bool Delete(int id)
+        public bool Delete(Guid id)
         {
             var product = _products.FirstOrDefault(_ => _.Id == id);
 
