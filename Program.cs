@@ -3,7 +3,7 @@ using first_dotnet_app.Interfaces;
 using first_dotnet_app.Repositories;
 using first_dotnet_app.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
