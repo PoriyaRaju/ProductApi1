@@ -12,8 +12,8 @@ using first_dotnet_app.Data;
 namespace first_dotnet_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260729053704_Add_empty_migration")]
-    partial class Add_empty_migration
+    [Migration("20260729064338_RenameTableProducts")]
+    partial class RenameTableProducts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

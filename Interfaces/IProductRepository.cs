@@ -4,7 +4,7 @@ namespace first_dotnet_app.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAll();
+        Task<IEnumerable<Product?>> GetAll();
 
         Product? GetById(Guid id);
 

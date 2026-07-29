@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace first_dotnet_app.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_empty_migration : Migration
+    public partial class RenameTableProducts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

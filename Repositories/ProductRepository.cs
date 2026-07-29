@@ -1,29 +1,33 @@
-﻿using first_dotnet_app.Interfaces;
+﻿using first_dotnet_app.Data;
+using first_dotnet_app.Interfaces;
 using first_dotnet_app.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace first_dotnet_app.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private static readonly List<Product> _products = new()
-        {
-            new Product
-            {
-                Name="Laptop",
-                Description="Dell i3 11th Gen",
-                Price = 20000
-            }
-        };
 
-        public IEnumerable<Product> GetAll()
+        private readonly AppDbContext _context;
+
+        public ProductRepository(AppDbContext context)
         {
-            return _products;
+            _context = context;
+        }
+
+        async public Task<IEnumerable<Product?>> GetAll()
+        {
+            var products = await _context.Products
+                        .AsNoTracking()
+                        .ToListAsync();
+
+            return products;
         }
 
         public Product? GetById(Guid id)
         {
-            return _products.FirstOrDefault(p => p.Id == id);
+            return _context.Products.FirstOrDefault(p => p.Id == id);
         }
 
         public Product Create(Product product)
